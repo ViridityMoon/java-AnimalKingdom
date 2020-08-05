@@ -45,6 +45,7 @@ public class Main
         
 
 
+        List<Animals> filteredList = filterAnimals(animalList, v -> v.getYearDiscovered() > 0);
 
         System.out.println("*** MVP ***");
         System.out.println("\n*** List all the animals in descending order by year named ***");
@@ -60,16 +61,22 @@ public class Main
         animalList.sort((v1, v2) -> v1.move().compareToIgnoreCase(v2.move()));
         animalList.forEach((v) -> System.out.println(v.getName() + " : " + v.move()));
 
-        System.out.println("\n*** List only those animals the breath with lungs ***");
-        filterAnimals(animalList, animal -> animal.breathe().equals("lungs"));
-        animalList.forEach((v) -> System.out.println(v.getName() + " : " + v.breathe().equals("lungs")));
+        System.out.println("\n*** List only those animals that breath with lungs ***");
+
+        filteredList = filterAnimals(animalList, animal -> animal.breathe().equals("lungs"));
+        filteredList.forEach((v) -> System.out.println(v.getName() + " : " + v.breathe()));
 
         System.out.println("\n*** List only those animals that breath with lungs and were named in 1758 ***");
-        filterAnimals(animalList, animal -> (animal.breathe().equals("lungs")) && (animal.getYearDiscovered() == 1758));
-        animalList.forEach((v) -> System.out.println(v.getName() + " : " + (v.breathe().equals("lungs") + " Year Discovered: " + v.getYearDiscovered())));
+        filteredList = filterAnimals(animalList, animal -> (animal.breathe().equals("lungs")) && (animal.getYearDiscovered() == 1758));
+        filteredList.forEach((v) -> System.out.println(v.getName() + " : " + v.breathe() + " Year Discovered: " + v.getYearDiscovered()));
 
         System.out.println("\n*** List only those animals that lay eggs and breath with lungs ***");
-        
+        filteredList = filterAnimals(animalList, animal -> animal.breathe().equals("lungs") && animal.reproduce().equals("eggs"));
+        filteredList.forEach((v) -> System.out.println(v.getName() + " : " + v.breathe() + " Reproduction: " + v.reproduce()));
+
+        System.out.println("\n*** List alphabetically only those animals that were named in 1758 ***");
+        filteredList = animalList.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
+        filteredList(animalList, animal -> animal.getYearDiscovered() == 1758);
 
 
     }
