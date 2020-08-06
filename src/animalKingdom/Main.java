@@ -80,7 +80,5 @@ public class Main
         filteredList.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
         filteredList = filterAnimals(animalList, animal -> animal.getYearDiscovered() == 1758);
         filteredList.forEach((v) -> System.out.println(v.getName() + " : " + v.getYearDiscovered()));
-
-
     }
 }
