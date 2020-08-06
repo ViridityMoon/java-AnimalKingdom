@@ -27,6 +27,7 @@ public class Main
         animalList.add(new Mammals("Zebra", 1778));
         animalList.add(new Mammals("Koala", 1816));
         animalList.add(new Mammals("Sloth", 1804));
+        animalList.add(new Mammals("Armadillo", 1758));
         animalList.add(new Mammals("Raccoon", 1758));
         animalList.add(new Mammals("Bigfoot", 2021));
 
@@ -75,8 +76,10 @@ public class Main
         filteredList.forEach((v) -> System.out.println(v.getName() + " : " + v.breathe() + " Reproduction: " + v.reproduce()));
 
         System.out.println("\n*** List alphabetically only those animals that were named in 1758 ***");
-        filteredList = animalList.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
-        filteredList(animalList, animal -> animal.getYearDiscovered() == 1758);
+        // animalList.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
+        filteredList.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
+        filteredList = filterAnimals(animalList, animal -> animal.getYearDiscovered() == 1758);
+        filteredList.forEach((v) -> System.out.println(v.getName() + " : " + v.getYearDiscovered()));
 
 
     }
